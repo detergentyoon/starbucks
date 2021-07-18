@@ -1,40 +1,3 @@
-/*********** 검색창 돋보기 아이콘 눌러도 검색창이 켜지도록 구성하기 **************/
-
-const searchEl = document.querySelector('.search');
-// querySelector 라는 메소드를 실행해서 ()인수 값을 찾는다
-// ()인수 : .search
-// ** document.querySelector 라는 메소드를 통해서 클래스가 search인 요소를 CSS 선택자로 찾아서 그것을 searchEl 변수에 할당
-
-// document = *html 그 자체* 에서 찾는다
-const searchInputEl = searchEl.querySelector('input');
-// 위에서 이미 .search 를 찾았으므로 인수 안에 .search input 을 쓰지 않고 input 만 써서 이미 찾은 요소에서 바로 찾도록 효율적으로 구성
-
-searchEl.addEventListener('click', function () {
-  //Logic..
-  // search 라는 클래스를 가지고 있는 div 요소를 click 하면 어떤 함수가 실행되는데,
-  searchInputEl.focus(); // 그 함수의 내용은 "검색 부분에 focus를 해라"
-});
-
-
-
-/************************** 검색창에 통합검색 힌트 추가 *************************/
-
-searchInputEl.addEventListener('focus', function () {
-  // searchInputEl 부분에 focus가 되면 두번 째 인수로 작성된 어떤 함수가 실행된다 (실행되는 함수 = 핸들러)
-  searchEl.classList.add('focused');
-  searchInputEl.setAttribute('placeholder', '통합검색');
-  // placeholder 인풋요소에 추가할 수 있는 html 속성 = input 요소에 입력되있을 힌트 부분 내용 = '통합검색'
-  // setAttribute 1인수 = 속성 / 2인수 = 속성의 값
-});
-
-searchInputEl.addEventListener('blur', function () {
-  // blur = focus 가 해제된 상태가 되면
-  searchEl.classList.remove('focused'); // focused 라는 클래스를 제거하도록
-  searchInputEl.setAttribute('placeholder', '');
-});
-
-
-
 /*****배너 광고가 일정 부분 이상 스크롤 내리면 사라지도록 & 최상단으로 빠른 이동 버튼 *********/
 
 const badgeEl = document.querySelector('header .badges');
@@ -179,12 +142,3 @@ spyEls.forEach(function (spyEl) {
     .setClassToggle(spyEl, 'show') // (toggle 할 요소, 요소의 이름0
     .addTo(new ScrollMagic.Controller());
 });
-
-
-
-// 년도 자동 초기화
-const thisYear = document.querySelector('.this-year')
-thisYear.textContent = new Date().getFullYear(); // textContent 속성 : 그 요소가 가지고 있는 글자 내용들을 알아내거나, 값을 지정하는 용도
-// Date 객체에서 현재 날짜를 뽑아낼 때, Date 객체를 생성자 함수로 실행해서
-// 그 안에 들어있는 getFullYear 메소드를 실행해주면
-// 그 메소드에서 현재 년도의 정보가 숫자 데이터로 반환됨

@@ -1,0 +1,79 @@
+.signin {
+  margin-top: 120px;
+  padding: 100px 0 150px; /* 내부여백 상 중 하*/
+  background-image: url(../images/signin_bg.jpg);
+  background-repeat: no repeat;
+  background-position: center; /* 이미지를 정 가운데 배치 */
+  background-attachment: fixed; /* 스크롤 할 때 요소와 같이 스크롤되지 않고 뷰포트에 고정된 상태로 스크롤 */
+  background-size: cover; /* 뷰포트에 더 넓은 너비에 이미지가 맞춰지도록 */
+}
+.signin h1 {
+  color: #fff;
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center; /* 텍스트 정렬 - 가운데*/
+  margin-bottom: 24px; /* h1 의 외부 여백 하단*/
+}
+.signin__card {
+  width: 500px;
+  margin: 0 auto; /* 위아래 0 , 좌우 auto = 가로 너비가 500px로 명시되어 있기 때문에 가운데 정렬이 가능해짐 */
+  border-radius: 6px;
+  background-color: #F6F5F0;
+  box-shadow: 2px 2px 20px rgba(0,0,0,.3); /* x축으로 2px 이동, y축으로 2px 이동, 20px의 흐림처리(blur 효과), 색상(30% 불투명도) */
+  color: #555;
+}
+.signin__card h2 {
+  padding: 30px; /* 내부여백이 위아래좌우 30px */
+  font-size: 18px;
+  text-align: center; /* 문자 정렬 - 가운데 */
+  border-bottom: 1px solid #ddd; /* 아래쪽 테두리선 */
+}
+.signin__card h2 strong {
+  font-weight: 700;
+  color: #006633;
+}
+.signin__card form {
+  padding: 30px 22px; /* 내부여백이 위아래 30px, 좌우 22px */
+}
+.signin__card form input {
+  width: 100%; /* 최대한 늘려서 */
+  margin-bottom: 12px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none; /* 따로 border 를 사용하니까 요소가 focus 되었을 때 주변에 생기는 파란색 선을 none 으로 나타나지 않게함 */
+  box-sizing: border-box; /* 사용한 border 값들만큼 박스 사이즈가 늘어나는 것을 방지 = input 요소들은 가로사이즈 100% 이상 안늘어나게 */
+  font-size: 14px;
+}
+.signin__card form [type="submit"] { /* 속성 선택자 */
+  background-color: #006633;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+.signin__card form p { /* 주의사항 작성된 p태그 */
+ font-size: 12px;
+ color: #006633;
+ text-align: center;
+}
+.signin__card .actions {
+  display: flex; /* 하위 a 태그 3개를 수평정렬 */
+  border-top: 1px solid #ddd;
+}
+.signin__card .actions a {
+  flex-grow: 1; /* 요소의 증가 너비가 1 비율 */
+  flex-basis: 0; /* 기본 너비 0 = 없는 상태 */
+/* = 즉, 각각의 a 태그는 1:1:1 비율로 만들어짐 */
+  text-align: center;
+  padding: 20px; /* 내부여백 20px */
+  color: #555;
+  font-size: 14px;
+  border-right: 1px solid #ddd; /* a 태그 사이 사이에 흰 실선이 나타나도록 하기 위해 */
+}
+.signin__card .actions a:last-child {
+  border-right: none; /* 마지막 a 태그의 오른쪽 흰 실선을 없애서 사이 사이에 나타나는 것처럼 묘사 */
+}
+.signin__card .actions a:hover {
+  text-decoration: underline; /* 버튼에 마우스를 올리면 밑줄이 쳐지도록 */
+}
