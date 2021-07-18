@@ -1,0 +1,354 @@
+/* COMMON */
+body {
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4; /* 각각 줄의 높이 = line-height */
+  font-family: 'Nanum Gothic', sans-serif;
+}
+img {
+  display: block;  /* 모든 img 태그들은 인라인이 아닌 블럭 요소로 취급하여 하나의 레이아웃(상자)로 취급 */
+}
+a {
+  text-decoration: none;
+}
+.inner {
+  width: 1100px;
+  margin: 0 auto;
+  position: relative; /* 하위요소들의 position: absolute 를 받아주는 역할 */
+}
+.btn {
+  width: 130px;
+  padding: 10px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center; /* 문자 가운데정렬 */
+  cursor: pointer;
+  box-sizing: border-box;
+  display: block;
+  transition: .4s;
+}
+.btn:hover {
+  background-color: #333;
+  color: #fff;
+}
+.btn.btn--reverse {
+  background-color: #333;
+  color: #fff;
+}
+.btn.btn--reverse:hover {
+  background-color: transparent; /* transparent = 투명함 */
+  color: #333;
+}
+.btn.btn--brown {
+  color: #592B18;
+  border-color: #592B18;
+}
+.btn.btn--brown:hover {
+  color: #fff;
+  background-color: #592B18;
+}
+.btn.btn--gold {
+  color: #D9AA8A;
+  border-color: #D9AA8A;
+}
+.btn.btn--gold:hover {
+  color: #fff;
+  background-color: #D9AA8A;
+}
+.btn.btn--white {
+  color: #fff;
+  border-color: #fff;
+}
+.btn.btn--white:hover {
+  color: #333;
+  background-color: #fff;
+}
+.back-to-position {
+  opacity: 0;
+  transition: 1s;
+}
+.back-to-position.to-right {
+  transform: translateX(-150px);
+}
+.back-to-position.to-left {
+  transform: translateX(150px);
+}
+.show .back-to-position {
+  opacity: 1;
+  transform: translateX(0);
+}
+.show .back-to-position.delay-0 {
+  transition-delay: 0s; /* 기본값이 0초이긴 하지만 가독성 확보를 위해 명시적으로 입력함 */
+}
+.show .back-to-position.delay-1 {
+  transition-delay: .3s;
+}
+.show .back-to-position.delay-2 {
+  transition-delay: .6s;
+}
+.show .back-to-position.delay-3 {
+  transition-delay: .9s;
+}
+
+/* HEADER */
+header {
+  width: 100%;
+  background-color: #f6f5f0;
+  border-bottom: 1px solid #c8c8c8;
+  position: fixed;
+  top: 0;
+  z-index: 9; /* 배너가 섹션에 가려지는 현상 방지 = 헤더가 가장 위에 있다 */
+}
+header > .inner { /* > = 자식요소인 '~' */
+  height: 120px;
+}
+header .logo {
+  height: 75px;
+  position: absolute; /* 부모요소 기준으로 배치하겠다 */
+  top: 0;
+  bottom: 0; /* 끝점 잡아주기 */
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+header .sub-menu {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  display: flex;
+}
+header .sub-menu ul.menu {
+  font-family: Arial, sans-serif;
+  display: flex;
+}
+header .sub-menu ul.menu li {
+  position: relative;
+}
+/* 카테고리에 구분선 생성 */
+header .sub-menu ul.menu li::before { /* ::before = 내부의 앞에 어떤 내용을 추가 하는 가상 요소(인라인) 선택자 */
+  content: ""; /* 그 내용은 content 라는 속성으로 정의 할 수 있음, 내용을 비워둘 수 있지만 content는 무조건 써야함 = 안그럼 before 는 만들어지지 않음 */
+  width: 1px;
+  height: 12px;
+  background-color: #e5e5e5;
+  position: absolute; /* 구분선의 위치 조정 위한, 그리고 absolute 는 display:blcok 과 같은 역할을 함 */ 
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+header .sub-menu ul.menu li:first-child::before {
+  /* Sign In 왼쪽의 불필요한 구분선 없애기 */
+  display: none;
+}
+header .sub-menu ul.menu li a {
+  font-size: 12px;
+  padding: 11px 16px;
+  display: block;
+  color: #656565;
+}
+header .sub-menu ul.menu li a:hover {
+  color: #000;
+}
+header .sub-menu .search {
+  height: 34px;
+  position: relative;
+}
+header .sub-menu .search input {
+  width: 36px;
+  height: 34px;
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* 요소의 크기 기준을 36px 34px 을 유지하면서 경계선이 생기도록 */
+  border-radius: 5px;
+  outline: none; /* 검색창을 클릭했을 때 생기는 또 다른 테두리 선 없애기 */
+  background-color: #fff;
+  color: #777;
+  font-size: 12px;
+  transition: width .4s;
+}
+header .sub-menu .search input:focus {
+  width: 190px;
+  border-color: #669900;
+}
+header .sub-menu .search .material-icons {
+  height: 24px; /* google material icon 의 크기 */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 5px;
+  margin: auto;
+  transition: .4s;
+}
+header .sub-menu .search.focused .material-icons {
+  opacity: 0;
+  /* 검색창이 focus 되었을 때 돋보기 아이콘 없애기 = opacity: 0;
+  사라질 때 0.4초가 걸리도록 = header .sub-menu .search .material-icons 에서 transition: .4s 설정 */
+}
+header .main-menu {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1; /* 메뉴가 나타났을 때 뒤의 배경 메뉴들 가리기 = 위에 나타내기 위해 */
+  display: flex;
+}
+header .main-menu .item {
+
+}
+header .main-menu .item .item__name {
+  padding: 10px 20px 34px 20px; /* top > right > bottom > left */
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+}
+header .main-menu .item:hover .item__name {
+/* item__name 뿐만 아니라 item__contents 부분에도 hover 가상클래스 선택자가 적용되어야 하기 때문에 .item 자체에 hover를 지정 */
+  background-color: #2c2a29;
+  color: #669900;
+  border-radius: 6px 6px 0 0;
+}
+header .main-menu .item .item__contents {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  display: none;
+}
+header .main-menu .item:hover .item__contents {
+  display: block;
+}
+header .main-menu .item .item__contents .contents__menu {
+  background-color: #2c2a29;
+}
+header .main-menu .item .item__contents .contents__menu > ul {
+  /* contents__menu 안에는 ul 태그가 총 2개 들어있기 때문에, 자식 선택자로 명시하지 않으면 하위 선택자가 되고,
+  결국 하위 선택자를 통해서 아래 요소는 contents__menu 안에 있는 모든 ul 태그에 미치게 되는 것을 방지하기 위해 자식 선택자로 명시 */
+  display: flex;
+  padding: 20px 0;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li {
+  width: 220px;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li h4 {
+  padding: 3px 0 12px 0;
+  font-size: 14px;
+  color: #fff;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li ul li {
+  padding: 5px 0;
+  font-size: 12px;
+  color: #999;
+  cursor: pointer; /* 커서를 화살표에서 손가락으로 바꾸는 */
+}
+header .main-menu .item .item__contents .contents__menu > ul > li ul li:hover {
+  color: #669900;
+}
+header .main-menu .item .item__contents .contents__texture {
+  padding: 26px 0;
+  font-size: 12px;
+  background-image: url("../images/main_menu_pattern.jpg"); /* 현재 CSS 파일에 있으므로 '../' */
+}
+header .main-menu .item .item__contents .contents__texture h4 {
+  color: #999;
+  font-weight: 700;
+}
+header .main-menu .item .item__contents .contents__texture p {
+  color: #669900;
+  margin: 4px 0 14px; /*top , left & right , bottom*/
+}
+header .badges {
+  position: absolute;
+  top: 132px;
+  right: 12px;
+}
+header .badges .badge {
+  border-radius: 10px;
+  overflow: hidden;
+  /* border-radius는 'div요소를 깎는 것'이고 이미지 자체는 그대로이기 때문에
+  그 안의 이미지가 깎인 div요소 안에서 넘치지 않도록 (깎은 형태에 알맞게 나오도록) 설정하는 것 */
+  margin-bottom: 12px;
+  box-shadow: 4px 4px 10px rgba(0,0,0,.15);
+  /* x축으로 4px 이동, y축으로 4px 이동, blur 10px, rgba 함수를 통해 검정색(0,0,0) + 투명도(알파값) 0.15까지  */
+  cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+  background-color: #272727;
+  border-top: 1px solid #333; /* 어워드 섹션과 구분하기 위한 구분선*/
+}
+footer .inner {
+ padding: 40px 0 60px 0;
+}
+footer .menu {
+  display: flex;
+  justify-content: center;
+}
+footer .menu li {
+  position: relative;
+}
+footer .menu li::before {
+  content: ""; /* 가상요소 선택자 사용할 때 필수 입력값 content */
+  width: 3px;
+  height: 3px;
+  background-color: #555;
+  position: absolute;
+  /* absolute 와 fixed 는 display 값을 자동으로 block으로 변경하기 때문에
+  가상요소(::before)가 인라인이어서 width 와 height 값을 적용받지 못하던것을 자동으로 보완함 */
+  top: 0;
+  bottom: 0;
+  right: -1px;
+  margin: auto;
+}
+footer .menu li:last-child::before {
+  display: none;
+}
+footer .menu li a {
+  color: #ccc;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 15px;
+  display: block; /* a 요소는 인라인이기 때문에 패딩 값을 적용시키기 위해 블록으로 변환 */
+}
+footer .menu li a.green {
+  color: #669900;
+}
+footer .btn-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+footer .btn-group .btn {
+  font-size: 12px;
+  margin-right: 10px;
+}
+footer .btn-group .btn:last-child {
+  margin-right: 0;
+}
+footer .info {
+  margin-top: 30px;
+  text-align: center;
+}
+footer .info span {
+  margin-right: 20px;
+  color: #999;
+  font-size: 12px;
+}
+footer .info span:last-child {
+  margin-right: 0;
+}
+footer .copyright {
+  color: #999;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 12px;
+}
+footer .logo {
+  margin: 30px auto 0; /* 상 중 하 */
+  /*
+  img 요소가 display: block; + margin: 0 auto; 인 경우,
+  width 속성이 없이도 가운데 정렬이 가능하다.
+
+  현재 프로젝트에서 img 요소에 display: block; 을 지정한 상태
+  */
+}
